@@ -1,5 +1,6 @@
 {
     "python.analysis.extraPaths": [
-        "./src/rules_set"
+        "./src/rules_set",
+        "./src/app/db"
     ]
 }
