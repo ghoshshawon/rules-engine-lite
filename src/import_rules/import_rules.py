@@ -28,8 +28,16 @@ class Import_to_db(ImportRules):
                 "INSERT INTO defaults (decision, base_score) VALUES (%s, %s)",
                 (defaults["decision"], defaults["base_score"])
                 )
+                 
             for dt in data['rules']:
                     rule_id=dt["id"]
+                    
+                    cursor.execute("SELECT COUNT(*) FROM rules WHERE rule_id = %s", (rule_id,))
+                    exists = cursor.fetchone()[0]
+    
+                    if exists:
+                         print(f"Rule with ID {rule_id} already exists. Skipping insertion.")
+                         continue
                     then=dt["then"]
                 
                     cursor.execute("INSERT INTO rules(rule_id,decision,score_delta,reason) VALUES (%s,%s,%s,%s)",
@@ -44,7 +52,7 @@ class Import_to_db(ImportRules):
                                 )
 
                     conn.commit()
-                    print("Rules and conditions inserted successfully.")
+            print("Rules and conditions inserted successfully in database.")
         except Exception as e:
             print("Error inserting rules:", e)
             conn.rollback()
