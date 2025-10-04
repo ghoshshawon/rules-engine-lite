@@ -1,6 +1,7 @@
 import mysql.connector
 
-def get_databases(host="localhost", user="root", password="Admin", port=3307):
+def connection(host="localhost", user="root", password="Admin", port=3307):
+    print("Processing...")
     try:
         mydb = mysql.connector.connect(
             host=host,
@@ -8,5 +9,6 @@ def get_databases(host="localhost", user="root", password="Admin", port=3307):
             password=password,
             port=port
         )
+        print("Dtabase Connected Successfully")
     except Exception as e:
         print("error:",e)
