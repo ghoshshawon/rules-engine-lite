@@ -23,7 +23,6 @@ It also provides **score calculation** and **explainability (trace)** for each d
 Each rule evaluation returns:
 - **decision**: One of `"approve"`, `"deny"`, or `"review"`.  
 - **score**: Numeric score in the range `[0, 100]`.  
-  - *(Default scheme: rule `score_delta` values are aggregated; you can adjust scoring in code)*.  
 - **trace**: Structured explanation listing which conditions passed/failed and why. 
 
 ## Requirements
