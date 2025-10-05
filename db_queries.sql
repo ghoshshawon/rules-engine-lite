@@ -1,6 +1,16 @@
 CREATE DATABASE IF NOT EXISTS rules_engine_db;
 USE rules_engine_db;
 
+
+
+CREATE TABLE rules (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    rule_id VARCHAR(50),
+    decision VARCHAR(20),
+    score_delta INT,
+    reason VARCHAR(255)
+);
+
 CREATE TABLE conditions (
     id INT AUTO_INCREMENT PRIMARY KEY,
     rule_id VARCHAR(50),
@@ -9,14 +19,6 @@ CREATE TABLE conditions (
     left_path VARCHAR(100),
     right_value JSON,
     FOREIGN KEY (rule_id) REFERENCES rules(id)
-);
-
-CREATE TABLE rules (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    rule_id VARCHAR(50),
-    decision VARCHAR(20),
-    score_delta INT,
-    reason VARCHAR(255)
 );
 
 CREATE TABLE defaults (
