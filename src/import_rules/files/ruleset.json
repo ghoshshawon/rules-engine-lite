@@ -1,0 +1,25 @@
+{
+    "rules": [
+        {
+            "id": "high_amount",
+            "when": {
+                "all": [
+                    {
+                        "op": ">",
+                        "left": "amount",
+                        "right": 1000
+                    }
+                ]
+            },
+            "then": {
+                "decision": "review",
+                "score_delta": 20,
+                "reason": "High amount"
+            }
+        }
+    ],
+    "defaults": {
+        "decision": "approve",
+        "base_score": 0
+    }
+}

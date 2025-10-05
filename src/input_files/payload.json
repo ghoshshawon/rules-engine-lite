@@ -1,0 +1,7 @@
+{
+    "amount": 1250.75,
+    "currency": "USD",
+    "payer": {"country": "US", "ip_country": "MX"},
+    "device": {"country": "US"},
+    "items": [{"sku": "A1", "price": 200.0}, {"sku": "B2", "price": 1050.75}]
+}
