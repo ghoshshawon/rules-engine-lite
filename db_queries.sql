@@ -1,5 +1,5 @@
 CREATE DATABASE IF NOT EXISTS rules_engine_db;
-USE rules_engine;
+USE rules_engine_db;
 
 CREATE TABLE conditions (
     id INT AUTO_INCREMENT PRIMARY KEY,

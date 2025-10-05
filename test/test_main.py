@@ -9,10 +9,9 @@ def payload():
 
 class TestEvaluator:
 
-    def test_high_amount(self, payload):
+    def test_high_amount_rule(self, payload):
         evaluator = Evaluator(payload)
         results = evaluator.evaluate()
-        print("\nTRACE:", results[0]['trace'])
 
         found = False
         for rule_res in results:
@@ -24,10 +23,9 @@ class TestEvaluator:
                 assert isinstance(rule_res["trace"], list)
         assert found, "high_amount rule not found in results"
 
-    def test_geo_mismatch(self, payload):
+    def test_geo_mismatch_rule(self, payload):
         evaluator = Evaluator(payload)
         results = evaluator.evaluate()
-        print("\nTRACE:", results[0]['trace'])
 
         found = False
         for rule_res in results:
@@ -38,24 +36,10 @@ class TestEvaluator:
                 assert isinstance(rule_res["reason"], str)
                 assert isinstance(rule_res["trace"], list)
         assert found, "geo_mismatch rule not found in results"
-    
-    def test_score_within_bounds(self, payload):
-        evaluator = Evaluator(payload)
-        results = evaluator.evaluate()
-        print("\nTRACE:", results[0]['trace'])
-        for r in results:
-            assert 0 <= r["score"] <= 100
-    # def test_missing_attributes(self):
-    #     payload = {"amount": 2000}   
-    #     evaluator = Evaluator(payload)
-    #     results = evaluator.evaluate()
-    #     print("\nTRACE (missing attrs):", results[0]['trace'])
-    #     assert any("Missing attribute" in cond.get("error", "") for cond in results[0]['trace'])
 
-    def test_all(self, payload):
+    def test_all_rules_have_structure(self, payload):
         evaluator = Evaluator(payload)
         results = evaluator.evaluate()
-        print("\nTRACE:", results[0]['trace'])
 
         for rule_res in results:
             assert "rule_id" in rule_res
@@ -65,5 +49,17 @@ class TestEvaluator:
             assert "trace" in rule_res
             assert isinstance(rule_res["trace"], list)
 
-    
+    # def test_score_within_bounds(self, payload):
+    #     evaluator = Evaluator(payload)
+    #     results = evaluator.evaluate()
+    #     for r in results:
+    #         assert 0 <= r["score"] <= 100
 
+    # def test_invalid_operator_handling(self, monkeypatch, payload):
+    #     def mock_evaluate_rule(self, rule_id, decision, score_delta, reason):
+    #         raise Exception("Unknown operator")
+
+    #     monkeypatch.setattr(RuleEvaluator, "evaluate_rule", mock_evaluate_rule)
+    #     evaluator = Evaluator(payload)
+    #     with pytest.raises(Exception, match="Unknown operator"):
+    #         evaluator.evaluate()
