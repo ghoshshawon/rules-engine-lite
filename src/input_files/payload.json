@@ -1,5 +1,5 @@
 {
-    "amount": 1250.75,
+    "amount": "0",
     "currency": "USD",
     "payer": {"country": "US", "ip_country": "MX"},
     "device": {"country": "US"},

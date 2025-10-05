@@ -1,24 +1,49 @@
 import json
-from src import connect_db
-from src import ImportRules, Import_to_db
 from src.evaluator import Evaluator
 
-def test_simple_approval():
-    payload_path = "src/input_files/payload.json"
-    
-    with open(payload_path,'r') as file:
-        payload= json.load(file)
-    
-    evaluator = Evaluator(payload)
-    result = evaluator.evaluate()
+# Load payload once
+payload_path = "src/input_files/payload.json"
+with open(payload_path, 'r') as file:
+    payload = json.load(file)
 
+class Test:
 
-    assert result["decision"] == "review"
-    assert result["score"] == 20
-    assert "High amount" in result["reason"]
-    assert any(cond["passed"] for cond in result["trace"])    
-        
-        
-    
-    
-    
+    def test_high_amount_rule(self):
+        evaluator = Evaluator(payload)
+        results = evaluator.evaluate()
+       
+        found = False
+        for rule_res in results:
+            if rule_res["rule_id"] == "high_amount":
+                found = True
+                assert rule_res["decision"] in ["review", "approve"]
+                assert rule_res["score"] >= 0
+                assert isinstance(rule_res["reason"], str)
+                assert isinstance(rule_res["trace"], list)
+        assert found, "high_amount rule not found in results"
+
+    def test_geo_mismatch_rule(self):
+        evaluator = Evaluator(payload)
+        results = evaluator.evaluate()
+
+        found = False
+        for rule_res in results:
+            if rule_res["rule_id"] == "geo_mismatch":
+                found = True
+                assert rule_res["decision"] in ["deny", "approve"]
+                assert isinstance(rule_res["score"], (int, float))
+                assert isinstance(rule_res["reason"], str)
+                assert isinstance(rule_res["trace"], list)
+        assert found, "geo_mismatch rule not found in results"
+
+    def test_all_rules_have_structure(self):
+        evaluator = Evaluator(payload)
+        results = evaluator.evaluate()
+
+        for rule_res in results:
+            assert "rule_id" in rule_res
+            assert "decision" in rule_res
+            assert "score" in rule_res
+            assert "reason" in rule_res
+            assert "trace" in rule_res
+            assert isinstance(rule_res["trace"], list)

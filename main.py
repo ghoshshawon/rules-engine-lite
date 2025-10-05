@@ -2,7 +2,6 @@ from src.db import connect_db
 from src.import_rules import ImportRules, Import_to_db
 from src.evaluator import Evaluator
 import pytest
-from test.test_main import test_simple_approval
 if __name__ == "__main__":
     # db_insert = Import_to_db("src/import_rules/files/ruleset.json")
     # db_insert.insert_rules()
