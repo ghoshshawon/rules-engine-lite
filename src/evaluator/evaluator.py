@@ -100,8 +100,8 @@ class RuleEvaluator:
                     "==": left_val == right_value,
                     "!=": left_val != right_value,
                     "in": left_val in right_value
-                }.get(op, False)
-            except Exception as e:
+                }
+            except Exception :
                 result = False
 
             trace.append({

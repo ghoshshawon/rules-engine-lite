@@ -6,14 +6,25 @@ It also provides **score calculation** and **explainability (trace)** for each d
 
 ---
 
-## Features
-- Load and evaluate rules from JSON or database  
-- Support for `all` and `any` condition types  
-- Dynamic decision output: `approve`, `deny`, `review`  
-- Rule explainability (why a decision was made)  
-- Clean and modular Python structure  
+## Rule Evaluation
 
----
+### Inputs
+- **payload.json**: Arbitrary nested JSON representing an event or transaction.  
+- **ruleset.json**: JSON file containing a list of rules (imported into the DB).
+
+### Supported Features
+- **Condition Trees**: `all` (AND) / `any` (OR) logic.  
+- **Operators**: `==`, `!=`, `>`, `<`, `>=`, `<=`, `in`.  
+- **Attribute-to-Attribute Comparisons**: e.g., `amount > limit`.  
+- **Nested Attribute Paths**: Dot-notation lookup (`payer.country`, `items.0.price`).  
+- **Short-Circuit Evaluation**: Stops evaluating further conditions once outcome is decided (for performance).
+
+### Outputs
+Each rule evaluation returns:
+- **decision**: One of `"approve"`, `"deny"`, or `"review"`.  
+- **score**: Numeric score in the range `[0, 100]`.  
+  - *(Default scheme: rule `score_delta` values are aggregated; you can adjust scoring in code)*.  
+- **trace**: Structured explanation listing which conditions passed/failed and why. 
 
 ## Requirements
 
