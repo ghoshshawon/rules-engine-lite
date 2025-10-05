@@ -1,17 +1,18 @@
 import json
-from src.evaluator import Evaluator
+import pytest
+from src.evaluator import Evaluator, RuleEvaluator
 
-# Load payload once
-payload_path = "src/input_files/payload.json"
-with open(payload_path, 'r') as file:
-    payload = json.load(file)
+@pytest.fixture
+def payload():
+    with open("src/input_files/payload.json", "r") as file:
+        return json.load(file)
 
-class Test:
+class TestEvaluator:
 
-    def test_high_amount_rule(self):
+    def test_high_amount_rule(self, payload):
         evaluator = Evaluator(payload)
         results = evaluator.evaluate()
-       
+
         found = False
         for rule_res in results:
             if rule_res["rule_id"] == "high_amount":
@@ -22,7 +23,7 @@ class Test:
                 assert isinstance(rule_res["trace"], list)
         assert found, "high_amount rule not found in results"
 
-    def test_geo_mismatch_rule(self):
+    def test_geo_mismatch_rule(self, payload):
         evaluator = Evaluator(payload)
         results = evaluator.evaluate()
 
@@ -36,7 +37,7 @@ class Test:
                 assert isinstance(rule_res["trace"], list)
         assert found, "geo_mismatch rule not found in results"
 
-    def test_all_rules_have_structure(self):
+    def test_all_rules_have_structure(self, payload):
         evaluator = Evaluator(payload)
         results = evaluator.evaluate()
 
@@ -47,3 +48,18 @@ class Test:
             assert "reason" in rule_res
             assert "trace" in rule_res
             assert isinstance(rule_res["trace"], list)
+
+    # def test_score_within_bounds(self, payload):
+    #     evaluator = Evaluator(payload)
+    #     results = evaluator.evaluate()
+    #     for r in results:
+    #         assert 0 <= r["score"] <= 100
+
+    # def test_invalid_operator_handling(self, monkeypatch, payload):
+    #     def mock_evaluate_rule(self, rule_id, decision, score_delta, reason):
+    #         raise Exception("Unknown operator")
+
+    #     monkeypatch.setattr(RuleEvaluator, "evaluate_rule", mock_evaluate_rule)
+    #     evaluator = Evaluator(payload)
+    #     with pytest.raises(Exception, match="Unknown operator"):
+    #         evaluator.evaluate()

@@ -1,1 +1,1 @@
-from .test_main import Test
+from .test_main import TestEvaluator

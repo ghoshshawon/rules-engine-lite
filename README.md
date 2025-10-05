@@ -24,6 +24,12 @@ Then install required dependencies using:
 pip install -r requirements.txt
 
 ```
+## Environment & Versions
+
+- **Python**: 3.11.9
+- **pytest**: 8.4.2
+- **MySQL**: 8.0.43 
+
 ##  How to Run the Project
 
 Follow these steps to set up and run the Rules Engine locally 👇  
@@ -36,14 +42,20 @@ mysql -u root -p < db_queries.sql
 ```
 ### 2.run the main.py
 
-## Others
+## Customization
 If you want to test different data, update:
 1.Change Input Payload
-src/input_files/payload.json
-2.run main.py
+update the payload.json here src/input_files/payload.json
+2.run 
+```bash
+python main.py
+```
 
 
 If you want to modify or add new rules, go to:
 1.Update Rules
-src/import_rules/files/ruleset.json
-2.run main
+update the ruleset.json here src/import_rules/files/ruleset.json
+2.run 
+```bash
+python main.py
+```

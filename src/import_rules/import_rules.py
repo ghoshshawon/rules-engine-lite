@@ -20,7 +20,6 @@ class Import_to_db(ImportRules):
     def insert_rules(self):
         data = self.get_rules()
         conn, cursor = connection()
-        print("working")
         try:
             defaults = data.get("defaults", {})
             if defaults:

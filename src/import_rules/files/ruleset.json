@@ -8,44 +8,30 @@
                         "op": ">",
                         "left": "amount",
                         "right": 1000
-                    },
-                    {
-                        "op": "in",
-                        "left": "payer.country",
-                        "right": [
-                            "US",
-                            "CA",
-                            "GB"
-                        ]
                     }
                 ]
             },
             "then": {
                 "decision": "review",
                 "score_delta": 20,
-                "reason": "High amount in supportedcountries"
+                "reason": "High amount"
             }
         },
         {
-            "id": "geo_mismatch",
+            "id": "ip_geo_mismatch",
             "when": {
                 "any": [
                     {
                         "op": "!=",
                         "left": "payer.country",
-                        "right": "device.country"
-                    },
-                    {
-                        "op": "!=",
-                        "left": "payer.ip_country",
-                        "right": "payer.country"
+                        "right": "payer.ip_country"
                     }
                 ]
             },
             "then": {
                 "decision": "deny",
                 "score_delta": 50,
-                "reason": "Geography mismatch"
+                "reason": "IP vs billing country mismatch"
             }
         }
     ],
