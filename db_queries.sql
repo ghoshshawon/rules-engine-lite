@@ -13,7 +13,7 @@ CREATE TABLE rules (
 
 CREATE TABLE conditions (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    rule_id INT,  -- this will reference rules.id
+    rule_id VARCHAR(50),  
     condition_type ENUM('all','any'),
     op VARCHAR(10),
     left_path VARCHAR(100),
