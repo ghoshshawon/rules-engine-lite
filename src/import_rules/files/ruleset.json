@@ -18,7 +18,7 @@
             }
         },
         {
-            "id": "ip_geo_mismatch",
+            "id": "geo_mismatch",
             "when": {
                 "any": [
                     {
