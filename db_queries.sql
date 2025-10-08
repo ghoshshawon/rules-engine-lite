@@ -25,6 +25,10 @@ CREATE TABLE conditions (
 
 CREATE TABLE defaults (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    rule_id VARCHAR(50),
     decision VARCHAR(20),
-    base_score INT
+    base_score INT,
+    FOREIGN KEY (rule_id) REFERENCES rules(id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
 );

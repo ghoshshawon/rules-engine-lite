@@ -1,10 +1,15 @@
 import json
 import pytest
+import os
 from src.evaluator import Evaluator, RuleEvaluator
+from main import get_data_rules
+
+
+payload_path = os.environ["PAYLOAD_FILE"]
 
 @pytest.fixture
 def payload():
-    with open("src/input_files/payload.json", "r") as file:
+    with open(payload_path, "r") as file:
         return json.load(file)
 
 class TestEvaluator:
@@ -29,7 +34,7 @@ class TestEvaluator:
 
         found = False
         for rule_res in results:
-            if rule_res["rule_id"] == "geo_mismatch":
+            if rule_res["rule_id"] == "ip_geo_mismatch":
                 found = True
                 assert rule_res["decision"] in ["deny", "approve"]
                 assert isinstance(rule_res["score"], (int, float))
