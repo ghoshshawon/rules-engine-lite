@@ -5,6 +5,7 @@ import pytest
 import json
 import os
 import argparse
+from fastapi import FastApi
 
 payload_path="src/input_files/"
 rules_path="src/import_rules/files/"
@@ -13,7 +14,7 @@ def get_data_rules(payload_file, rules_file):
     rules = os.path.join(rules_path, rules_file)
     
     return data,rules
-    
+
 if __name__ == "__main__":
     
     parser= argparse.ArgumentParser("Rules Evaluation")

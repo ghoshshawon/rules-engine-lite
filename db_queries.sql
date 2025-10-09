@@ -21,7 +21,7 @@ CREATE TABLE conditions (
     FOREIGN KEY (rule_id) REFERENCES rules(id)
         ON DELETE CASCADE
         ON UPDATE CASCADE
-)
+);
 
 CREATE TABLE defaults (
     id INT AUTO_INCREMENT PRIMARY KEY,

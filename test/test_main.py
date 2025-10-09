@@ -54,11 +54,11 @@ class TestEvaluator:
             assert "trace" in rule_res
             assert isinstance(rule_res["trace"], list)
 
-    # def test_score_within_bounds(self, payload):
-    #     evaluator = Evaluator(payload)
-    #     results = evaluator.evaluate()
-    #     for r in results:
-    #         assert 0 <= r["score"] <= 100
+    def test_score_within_bounds(self, payload):
+        evaluator = Evaluator(payload)
+        results = evaluator.evaluate()
+        for r in results:
+            assert 0 <= r["score"] <= 100
 
     # def test_invalid_operator_handling(self, monkeypatch, payload):
     #     def mock_evaluate_rule(self, rule_id, decision, score_delta, reason):

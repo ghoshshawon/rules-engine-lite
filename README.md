@@ -57,12 +57,12 @@ mysql -u root -p < db_queries.sql
 #### 1.update the payload.json here src/input_files/payload.json
 #### 2.run 
 ```bash
-python main.py
+python python main.py --payload payload.json --rules rules.json
 ```
 
 ### If you want to modify or add new rules, go to:
 #### 1.update the ruleset.json here src/import_rules/files/ruleset.json
 #### 2.run 
 ```bash
-python main.py
+python python main.py --payload payload.json --rules rules.json
 ```
