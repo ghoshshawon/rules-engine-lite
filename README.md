@@ -6,12 +6,6 @@ It also provides **score calculation** and **explainability (trace)** for each d
 
 ---
 
-## Rule Evaluation
-
-### Inputs
-- **payload.json**: Arbitrary nested JSON representing an event or transaction.  
-- **ruleset.json**: JSON file containing a list of rules (imported into the DB).
-
 ### Supported Features
 - **Condition Trees**: `all` (AND) / `any` (OR) logic.  
 - **Operators**: `==`, `!=`, `>`, `<`, `>=`, `<=`, `in`.  
@@ -19,11 +13,11 @@ It also provides **score calculation** and **explainability (trace)** for each d
 - **Nested Attribute Paths**: Dot-notation lookup (`payer.country`, `items.0.price`).  
 - **Short-Circuit Evaluation**: Stops evaluating further conditions once outcome is decided (for performance).
 
-### Outputs
-Each rule evaluation returns:
-- **decision**: One of `"approve"`, `"deny"`, or `"review"`.  
-- **score**: Numeric score in the range `[0, 100]`.  
-- **trace**: Structured explanation listing which conditions passed/failed and why. 
+## Environment & Versions
+
+- **Python**: 3.11.9
+- **pytest**: 8.4.2
+- **MySQL**: 8.0.43 
 
 ## Requirements
 
@@ -34,11 +28,20 @@ Then install required dependencies using:
 pip install -r requirements.txt
 
 ```
-## Environment & Versions
 
-- **Python**: 3.11.9
-- **pytest**: 8.4.2
-- **MySQL**: 8.0.43 
+## Rule Evaluation
+
+### Inputs
+- **payload.json**: Arbitrary nested JSON representing an event or transaction.  
+- **ruleset.json**: JSON file containing a list of rules (imported into the DB).
+
+
+### Outputs
+Each rule evaluation returns:
+- **decision**: One of `"approve"`, `"deny"`, or `"review"`.  
+- **score**: Numeric score in the range `[0, 100]`.  
+- **trace**: Structured explanation listing which conditions passed/failed and why. 
+
 
 ##  How to Run the Project
 
