@@ -42,7 +42,8 @@ Each rule evaluation returns:
 - **score**: Numeric score in the range `[0, 100]`.  
 - **trace**: Structured explanation listing which conditions passed/failed and why. 
 
-
+ 
+ 
 ##  How to Run the Project
 
 Follow these steps to set up and run the Rules Engine locally   
