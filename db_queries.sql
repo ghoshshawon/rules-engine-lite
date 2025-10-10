@@ -18,7 +18,7 @@ CREATE TABLE conditions (
     op VARCHAR(10),
     left_path VARCHAR(100),
     right_value JSON,
-    FOREIGN KEY (rule_id) REFERENCES rules(id)
+    FOREIGN KEY (rule_id) REFERENCES rules(rule_id)
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
@@ -28,7 +28,7 @@ CREATE TABLE defaults (
     rule_id VARCHAR(50),
     decision VARCHAR(20),
     base_score INT,
-    FOREIGN KEY (rule_id) REFERENCES rules(id)
+    FOREIGN KEY (rule_id) REFERENCES rules(rule_id)
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
