@@ -43,10 +43,8 @@ Each rule evaluation returns:
 - **trace**: Structured explanation listing which conditions passed/failed and why. 
 
  
- 
-##  How to Run the Project
 
-Follow these steps to set up and run the Rules Engine locally   
+
 
 ### 1.Setup Database
 After cloning the repo, create the required database and tables by running:
@@ -54,14 +52,21 @@ After cloning the repo, create the required database and tables by running:
 ```bash
 mysql -u root -p < db_queries.sql
 ```
-### 2.run the main.py
+##  How to Run the Project
 
-## Customization
+Follow these steps to set up and run the Rules Engine locally   
+
+#### run the command
+```bash
+python main.py --payload payload.json --rules rules.json
+```
+## Customization (if you want)
+
 ### If you want to test different data, update:
 #### 1.update the payload.json here src/input_files/payload.json
 #### 2.run 
 ```bash
-python python main.py --payload payload.json --rules rules.json
+python main.py --payload payload.json --rules rules.json
 ```
 
 ### If you want to modify or add new rules, go to:

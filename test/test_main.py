@@ -34,7 +34,7 @@ class TestEvaluator:
 
         found = False
         for rule_res in results:
-            if rule_res["rule_id"] == "ip_geo_mismatch":
+            if rule_res["rule_id"] == "geo_mismatch":
                 found = True
                 assert rule_res["decision"] in ["deny", "approve"]
                 assert isinstance(rule_res["score"], (int, float))
