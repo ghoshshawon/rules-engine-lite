@@ -5,8 +5,9 @@ import pytest
 import json
 import os
 import argparse
-from fastapi import FastAPI
+# from src.api import GetRules
 
+# GetRules.get_rules()
 payload_path="src/input_files/"
 rules_path="src/import_rules/files/"
 def get_data_rules(payload_file, rules_file):
@@ -15,11 +16,6 @@ def get_data_rules(payload_file, rules_file):
     
     return data,rules
 
-# app = FastAPI()
-
-# @app.get("/")
-# def get_welcome():
-#      return "welcome"
 
 
 if __name__ == "__main__":

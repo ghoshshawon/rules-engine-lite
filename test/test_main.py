@@ -60,11 +60,3 @@ class TestEvaluator:
         for r in results:
             assert 0 <= r["score"] <= 100
 
-    # def test_invalid_operator_handling(self, monkeypatch, payload):
-    #     def mock_evaluate_rule(self, rule_id, decision, score_delta, reason):
-    #         raise Exception("Unknown operator")
-
-    #     monkeypatch.setattr(RuleEvaluator, "evaluate_rule", mock_evaluate_rule)
-    #     evaluator = Evaluator(payload)
-    #     with pytest.raises(Exception, match="Unknown operator"):
-    #         evaluator.evaluate()
